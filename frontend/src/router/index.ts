@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { useUserStore } from '../store/userStore';
 import HomeView from '../views/HomeView.vue';
 import LoginView from '../views/LoginView.vue';
+import RegisterView from '../views/RegisterView.vue'; // 修改注册组件引入
 import RoomBookingView from '../views/RoomBookingView.vue';
 import MembershipView from '../views/MembershipView.vue';
 import PromotionsView from '../views/PromotionsView.vue';
@@ -9,7 +10,7 @@ import AdminView from '../views/AdminView.vue';
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'Home',
     component: HomeView,
     meta: { requiresAuth: true }
@@ -21,10 +22,16 @@ const routes = [
     meta: { guest: true }
   },
   {
+    path: '/register', // 添加注册路由
+    name: 'Register',
+    component: RegisterView,
+    meta: { guest: true, title: '注册账号' } // 已登录用户不能访问注册页面
+  },
+  {
     path: '/room-booking',
     name: 'RoomBooking',
     component: RoomBookingView,
-    meta: { requiresAuth: true }
+    meta: { requiresAuth: false }
   },
   {
     path: '/membership',
@@ -36,13 +43,18 @@ const routes = [
     path: '/promotions',
     name: 'Promotions',
     component: PromotionsView,
-    meta: { requiresAuth: true }
+    meta: { requiresAuth: false } // 修改为不需要登录也能访问
   },
   {
     path: '/admin',
     name: 'Admin',
     component: AdminView,
     meta: { requiresAuth: true, requiresAdmin: true }
+  },
+  {
+    // 根路径重定向到登录页面
+    path: '/',
+    redirect: '/login'
   }
 ];
 
@@ -51,7 +63,7 @@ const router = createRouter({
   routes
 });
 
-// 导航守卫
+// 导航守卫保持不变
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore();
   
@@ -74,7 +86,7 @@ router.beforeEach((to, from, next) => {
     }
   }
   
-  // 已登录用户不能访问登录页面
+  // 已登录用户不能访问登录/注册页面
   if (to.matched.some(record => record.meta.guest) && userStore.isLoggedIn) {
     next({ name: 'Home' });
     return;
@@ -83,4 +95,4 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-export default router; 
+export default router;

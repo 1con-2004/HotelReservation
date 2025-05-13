@@ -1,0 +1,11 @@
+{
+  "name": "HotelReservation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/1con-2004/HotelReservation.git",
+  "author": "fengya <3530317762@qq.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

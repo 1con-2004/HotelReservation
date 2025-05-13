@@ -24,6 +24,9 @@
       <button @click="handleLogin" :disabled="isLoading">
         {{ isLoading ? '登录中...' : '登录' }}
       </button>
+      <div class="register-link">
+        <p>还没有账号？<router-link to="/register">立即注册</router-link></p>
+      </div>
       <div class="login-info">
         <p>管理员账号: admin / admin123</p>
         <p>用户账号: user / user123</p>
@@ -58,7 +61,7 @@ const handleLogin = async () => {
     const result = await userStore.login(username.value, password.value);
     
     if (result.success) {
-      router.push('/');
+      router.push('/home');
     } else {
       errorMessage.value = result.message;
     }
@@ -147,5 +150,20 @@ button:disabled {
 .login-info p {
   margin: 5px 0;
   color: #666;
+}
+
+.register-link {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.register-link a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
 }
 </style> 

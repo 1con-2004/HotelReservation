@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="100" viewBox="0 0 200 100">
+  <defs>
+    <pattern id="silk" patternUnits="userSpaceOnUse" width="100" height="100">
+      <rect width="100" height="100" fill="#0F1A3D"/>
+      <path d="M0,10 Q25,5 50,10 T100,10 M0,30 Q25,25 50,30 T100,30 M0,50 Q25,45 50,50 T100,50 M0,70 Q25,65 50,70 T100,70 M0,90 Q25,85 50,90 T100,90" 
+            stroke="#1A2851" stroke-width="0.5" fill="none" opacity="0.4"/>
+      <path d="M0,0 Q25,5 50,0 T100,0 M0,20 Q25,25 50,20 T100,20 M0,40 Q25,45 50,40 T100,40 M0,60 Q25,65 50,60 T100,60 M0,80 Q25,85 50,80 T100,80" 
+            stroke="#1A2851" stroke-width="0.5" fill="none" opacity="0.4"/>
+    </pattern>
+  </defs>
+  <rect width="200" height="100" fill="url(#silk)"/>
+</svg> 
